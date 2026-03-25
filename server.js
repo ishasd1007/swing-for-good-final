@@ -10,10 +10,10 @@ const app = express();
 
 // middleware
 app.use(express.json());
+
+// ✅ FIXED CORS (ONLY ONE)
 app.use(cors());
-app.use(cors({
-  origin: "*"
-}));
+
 // routes
 app.use("/api/auth", authRoutes);
 
@@ -26,7 +26,6 @@ mongoose.connect(process.env.MONGO_URI)
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
-
 // server start
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
